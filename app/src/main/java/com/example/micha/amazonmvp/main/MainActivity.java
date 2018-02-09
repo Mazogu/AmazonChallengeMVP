@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Adapter;
 import android.widget.Toast;
 
 import com.example.micha.amazonmvp.R;
 import com.example.micha.amazonmvp.model.Book;
+import com.example.micha.amazonmvp.utils.BookAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         setContentView(R.layout.activity_main);
         books = new ArrayList<>();
         recyclerView = findViewById(R.id.recycle);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         presenter = new MainPresenter();
         presenter.bindToView(this);
         presenter.start();
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     @Override
     public void addBooks(Book[] books) {
         this.books.addAll(Arrays.asList(books));
-        Log.d(TAG, "addBooks: Success");
+        BookAdapter adapter = new BookAdapter(this, this.books);
+        recyclerView.setAdapter(adapter);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
     }
 }
