@@ -22,11 +22,12 @@ public class RetrofitHelper {
                     .baseUrl(MainPresenter.Base_Url).build();
         }
 
-        public RetrofitService getBooks(){
-            return Factory.getRetro().create(RetrofitService.class);
-        }
     }
 
+    public static Observable<Book[]> getBooks(){
+        RetrofitService service = Factory.getRetro().create(RetrofitService.class);
+        return service.getBooks();
+    }
 
     public interface RetrofitService{
         @GET("books.json")

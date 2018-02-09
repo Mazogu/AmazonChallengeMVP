@@ -1,5 +1,6 @@
 package com.example.micha.amazonmvp.main;
 
+import com.example.micha.amazonmvp.model.Book;
 import com.example.micha.amazonmvp.utils.BasePresenter;
 import com.example.micha.amazonmvp.utils.BaseView;
 
@@ -8,11 +9,11 @@ import com.example.micha.amazonmvp.utils.BaseView;
  */
 
 public interface MainContract {
-    public interface MainView extends BaseView{
-
+    public interface MainViewInteractor extends BaseView{
+        public void addBooks(Book[] books);
     }
 
-    public interface MainPresenter extends BasePresenter<MainView>{
-
+    public interface MainPresenterInteractor extends BasePresenter<MainViewInteractor>{
+        public void start();
     }
 }
