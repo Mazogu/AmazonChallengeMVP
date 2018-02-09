@@ -47,4 +47,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
     }
+
+    @Override
+    protected void onDestroy() {
+        presenter.unbindView();
+        super.onDestroy();
+    }
 }
